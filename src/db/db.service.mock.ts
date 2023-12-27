@@ -1,5 +1,6 @@
 import { Prisma, PrismaPromise, wallets } from "@prisma/client";
 
+
 export class MockDbService {
 
     wallets = {

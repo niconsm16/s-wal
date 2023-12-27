@@ -5,8 +5,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
-import { WalletsModule } from './wallets/wallets.module';
 import { UrlsService } from './urls/urls.service';
+import { WalletsModule } from './wallets/wallets.module';
 
 
 @Module({

@@ -29,7 +29,8 @@ export class UrlsService {
         this.key = this.configService.get('ETHERSCAN_APIKEY');
     }
 
-    // GetURLs
+    // private
+
     private getUrlHistory = (address: string) =>
         `${this.url}?${this.module}&${this.actionHistory}&${this.start}&${this.end}&${this.toShow}&${this.sort}&address=${address}&apikey=${this.key}`;
 
@@ -38,6 +39,7 @@ export class UrlsService {
         `${this.url}?${this.module}&${this.actionBalance}&address=${address}&${this.tag}&apikey=${this.key}`;
 
 
+    // public
 
     getWalletDataHistory = async (address: string): Promise<IWalletData> => {
         try {
