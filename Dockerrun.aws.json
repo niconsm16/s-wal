@@ -1,7 +1,7 @@
 {
     "AWSEBDockerrunVersion": "1",
     "Image": {
-        "Name": "375514821328.dkr.ecr.us-east-1.amazonaws.com/wallet",
+        "Name": "",
         "Update": "true"
     },
     "Ports": [
