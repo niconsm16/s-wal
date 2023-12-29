@@ -21,8 +21,8 @@ export class WalletsService {
   }
 
   constructor(
-    private readonly db: DbService,
-    private readonly url: UrlsService
+    private readonly dbService: DbService,
+    private readonly urlsService: UrlsService
   ) { }
 
 
@@ -65,7 +65,7 @@ export class WalletsService {
   // Public
 
   findAllWallets = async (): Promise<PrismaPromise<wallets[]>> => {
-    try { return await this.db.wallets.findMany(); }
+    try { return await this.dbService.wallets.findMany(); }
     catch (e) { return []; }
   }
 
@@ -74,7 +74,7 @@ export class WalletsService {
 
     if (address === '') return this.errorHandler(5);
 
-    const walletData = await this.url.getWalletDataHistory(address);
+    const walletData = await this.urlsService.getWalletDataHistory(address);
     const error = this.getError(walletData)
 
     if (typeof walletData.result !== 'string'
@@ -82,9 +82,9 @@ export class WalletsService {
 
       try {
         const timestamp = walletData.result[ 0 ].timeStamp;
-        const balance = await this.url.getWalletDataBalance(address);
+        const balance = await this.urlsService.getWalletDataBalance(address);
         const data = this.createWalletData(address, timestamp, balance);
-        await this.db.wallets.create({ data });
+        await this.dbService.wallets.create({ data });
         return this.errorHandler(0);
       }
       catch (e) { return this.errorHandler(3); }
@@ -98,7 +98,7 @@ export class WalletsService {
     data: Prisma.walletsUpdateInput) => {
 
     try {
-      await this.db.wallets.update({ data, where: address })
+      await this.dbService.wallets.update({ data, where: address })
       return this.errorHandler(0);
     }
     catch (e) { return this.errorHandler(1); }
@@ -107,7 +107,7 @@ export class WalletsService {
 
   removeWallet = async (id: Prisma.walletsWhereUniqueInput) => {
     try {
-      await this.db.wallets.delete({ where: id });
+      await this.dbService.wallets.delete({ where: id });
       return this.errorHandler(0);
     }
     catch (e) { return this.errorHandler(1); }
