@@ -11,7 +11,7 @@ RUN npm i --omit=dev
 RUN npx prisma generate
 
 ENV NODE_LOCAL_PORT=8080
-ENV ETHERSCAN_APIKEY="NSZCD6S4TKVWRS13PMQFMVTNP6H7NAGHUY"
-ENV DATABASE_URL=postgres://cklwnpuw:qlfRv6dWbHwofhHw7actJzJmOxpFOGe8@drona.db.elephantsql.com/cklwnpuw
+ENV ETHERSCAN_APIKEY=""
+ENV DATABASE_URL=""
 
 CMD npx prisma migrate deploy && npm run start:prod
