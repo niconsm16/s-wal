@@ -7,11 +7,11 @@ services:
     restart: unless-stopped
     container_name: node-wallets
     environment:
-      - ETHERSCAN_APIKEY=NSZCD6S4TKVWRS13PMQFMVTNP6H7NAGHUY
+      - ETHERSCAN_APIKEY=""
       - NODE_LOCAL_PORT=8080
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/securitize_wallets?schema=public
+      - DATABASE_URL=""
     ports:
-      - 80:6868
+      - 80:8080
     command: /bin/sh -c "npx prisma migrate deploy && npm run start:prod"
     stdin_open: true
     tty: true
